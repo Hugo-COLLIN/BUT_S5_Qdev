@@ -1,5 +1,6 @@
 package org.iut.tdd;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,8 +30,32 @@ public class ListesNumeriques {
      * @return la somme de nb1 et nb2 représentée comme une liste de chiffres
      */
     public List<Integer> ajoute(List<Integer> nb1, List<Integer> nb2) {
+        if (nb1 == null || nb2 == null) return null;
+        areInLegalRange(nb1);
+        areInLegalRange(nb2);
 
-        return null;
+        List<Integer> res = new ArrayList<>();
+        int retenue = 0;
+        int l = Math.max(nb1.size(), nb2.size());
+
+        int a, b;
+        for (int i = l-1; i >= 0; i--) {
+            if (i < nb1.size()) a = nb1.get(i); else a = 0;
+            if (i < nb2.size()) b = nb2.get(i); else b = 0;
+            int somme = a + b + retenue;
+            retenue = somme / 10;
+            res.add(0, somme % 10);
+        }
+
+        if (retenue > 0) res.add(0, retenue);
+
+        return res;
+    }
+
+    public void areInLegalRange(List<Integer> list) {
+        list.forEach(x -> {
+            if (x < 0 || x > 9) throw new IllegalArgumentException("Chaque élément des listes nb1 et nb2 doit être compris entre 0 et 9.");
+        });
     }
 
 }
