@@ -52,6 +52,14 @@ public class ListesNumeriques {
         return res;
     }
 
+    /**
+     * Vérifie que chaque élément des listes nb1 et nb2 est compris entre 0 et 9.
+     * Une exception <code>IllegalArgumentException</code> est levée si cette condition préalable n'est
+     * pas remplie.
+     * @param list liste à vérifier
+     * @throws IllegalArgumentException si un élément de la liste n'est pas compris entre 0 et 9
+     * @see IllegalArgumentException
+     */
     public void areInLegalRange(List<Integer> list) {
         list.forEach(x -> {
             if (x < 0 || x > 9) throw new IllegalArgumentException("Chaque élément des listes nb1 et nb2 doit être compris entre 0 et 9.");
