@@ -78,6 +78,20 @@ class ListesNumeriquesTest {
     }
 
     @Test
+    void testAjouteWithCarry() {
+        l1.add(5);
+        l1.add(5);
+        l2.add(5);
+        l2.add(5);
+
+        lRes.add(1);
+        lRes.add(1);
+        lRes.add(0);
+        assertEquals(lRes, listesNumeriques.ajoute(l1, l2));
+    }
+
+
+    @Test
     void testAreInLegalRangeEdgeCases() {
         l1.add(0);
         l1.add(9);
@@ -104,5 +118,22 @@ class ListesNumeriquesTest {
         assertDoesNotThrow(() -> listesNumeriques.areInLegalRange(l1));
         assertDoesNotThrow(() -> listesNumeriques.areInLegalRange(l2));
     }
+
+    @Test
+    void testAreInLegalRangeBelowZero() {
+        l1.add(-1);
+
+        assertThatThrownBy(() -> listesNumeriques.areInLegalRange(l1))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void testAreInLegalRangeAboveNine() {
+        l1.add(10);
+
+        assertThatThrownBy(() -> listesNumeriques.areInLegalRange(l1))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }
