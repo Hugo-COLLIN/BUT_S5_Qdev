@@ -38,7 +38,8 @@ public class ListesNumeriques {
         int retenue = 0;
         int l = Math.max(nb1.size(), nb2.size());
 
-        int a, b;
+        int a;
+        int b;
         for (int i = l-1; i >= 0; i--) {
             if (i < nb1.size()) a = nb1.get(i); else a = 0;
             if (i < nb2.size()) b = nb2.get(i); else b = 0;

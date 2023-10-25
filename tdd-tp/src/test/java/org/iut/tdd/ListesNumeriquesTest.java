@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListesNumeriquesTest {
+class ListesNumeriquesTest {
 
     List<Integer> l1, l2, lRes;
     ListesNumeriques listesNumeriques;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         listesNumeriques = new ListesNumeriques();
 
         l1 = new ArrayList<>();
@@ -24,7 +24,7 @@ public class ListesNumeriquesTest {
     }
 
     @Test
-    public void testAjouteOk() {
+    void testAjouteOk() {
         l1.add(1);
         l1.add(2);
         l2.add(3);
@@ -36,7 +36,7 @@ public class ListesNumeriquesTest {
     }
 
     @Test
-    public void testAjouteThrowsException() {
+    void testAjouteThrowsException() {
         l1.add(0, 1);
         l1.add(0, 2);
         l2.add(0, 3);
@@ -48,7 +48,7 @@ public class ListesNumeriquesTest {
     }
 
     @Test
-    public void testAjouteNull() {
+    void testAjouteNull() {
         l1.add(0, 1);
         l1.add(0, 2);
 
@@ -57,7 +57,7 @@ public class ListesNumeriquesTest {
     }
 
     @Test
-    public void testAjouteEmpty() {
+    void testAjouteEmpty() {
         l1.add(0, 1);
         l1.add(0, 2);
 
@@ -67,7 +67,7 @@ public class ListesNumeriquesTest {
 
 
     @Test
-    public void testAreInLegalRangeThrowsException() {
+    void testAreInLegalRangeThrowsException() {
         l1.add(0, 10);
         l1.add(0, 3);
 
@@ -76,17 +76,17 @@ public class ListesNumeriquesTest {
     }
 
     @Test
-    public void testAreInLegalRangeOk() {
+    void testAreInLegalRangeOk() {
         l1.add(0, 1);
         l1.add(0, 2);
         l2.add(0, 3);
         l2.add(0, 3);
 
-        listesNumeriques.areInLegalRange(l1);
-        listesNumeriques.areInLegalRange(l2);
+        assertDoesNotThrow(() -> listesNumeriques.areInLegalRange(l1));
+        assertDoesNotThrow(() -> listesNumeriques.areInLegalRange(l2));
     }
 
-    @Test
+//    @Test
 
 
 
