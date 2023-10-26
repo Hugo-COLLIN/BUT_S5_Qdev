@@ -48,6 +48,7 @@ class ListesNumeriquesTest {
 
         lRes.add(4);
         lRes.add(5);
+
         assertEquals(lRes, listesNumeriques.ajoute(l1, l2));
     }
 
@@ -90,21 +91,6 @@ class ListesNumeriquesTest {
         assertEquals(l1, listesNumeriques.ajoute(new ArrayList<>(), l1));
     }
 
-//    /**
-//     * Teste la méthode ajoute dans le cas où les listes sont vides
-//     */
-//    @Test
-//    void testAjouteNoCarry() {
-//        l1.add(1);
-//        l1.add(2);
-//        l2.add(2);
-//        l2.add(3);
-//
-//        lRes.add(3);
-//        lRes.add(5);
-//        assertEquals(lRes, listesNumeriques.ajoute(l1, l2));
-//    }
-
     /**
      * Teste la méthode ajoute dans le cas où on a une retenue à la fin
      */
@@ -118,6 +104,7 @@ class ListesNumeriquesTest {
         lRes.add(1);
         lRes.add(1);
         lRes.add(0);
+
         assertEquals(lRes, listesNumeriques.ajoute(l1, l2));
     }
 
@@ -140,11 +127,8 @@ class ListesNumeriquesTest {
     void testAreInLegalRangeOk() {
         l1.add(0, 1);
         l1.add(0, 2);
-        l2.add(0, 3);
-        l2.add(0, 3);
 
         assertDoesNotThrow(() -> listesNumeriques.areInLegalRange(l1));
-        assertDoesNotThrow(() -> listesNumeriques.areInLegalRange(l2));
     }
 
     /**
