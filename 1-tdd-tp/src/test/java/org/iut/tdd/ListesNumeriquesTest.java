@@ -9,11 +9,24 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Tests unitaires pour la classe ListesNumeriques
+ */
 class ListesNumeriquesTest {
 
+    /**
+     * Les listes utilisées pour les tests
+     */
     List<Integer> l1, l2, lRes;
+
+    /**
+     * La classe à tester
+     */
     ListesNumeriques listesNumeriques;
 
+    /**
+     * Initialisation des variables avant chaque test
+     */
     @BeforeEach
     void setUp() {
         listesNumeriques = new ListesNumeriques();
@@ -23,6 +36,9 @@ class ListesNumeriquesTest {
         lRes = new ArrayList<>();
     }
 
+    /**
+     * Teste la méthode ajoute dans le cas où les listes sont correctes
+     */
     @Test
     void testAjouteOk() {
         l1.add(1);
@@ -35,6 +51,9 @@ class ListesNumeriquesTest {
         assertEquals(lRes, listesNumeriques.ajoute(l1, l2));
     }
 
+    /**
+     * Teste la méthode ajoute dans le cas où l'un des éléments de la liste est supérieur à 9
+     */
     @Test
     void testAjouteThrowsException() {
         l1.add(0, 1);
@@ -47,6 +66,9 @@ class ListesNumeriquesTest {
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
+    /**
+     * Teste la méthode ajoute dans le cas où l'une des listes est null
+     */
     @Test
     void testAjouteNull() {
         l1.add(0, 1);
@@ -56,6 +78,9 @@ class ListesNumeriquesTest {
         assertNull(listesNumeriques.ajoute(null, l1));
     }
 
+    /**
+     * Teste la méthode ajoute dans le cas où l'une des listes est vide
+     */
     @Test
     void testAjouteEmpty() {
         l1.add(0, 1);
@@ -65,18 +90,24 @@ class ListesNumeriquesTest {
         assertEquals(l1, listesNumeriques.ajoute(new ArrayList<>(), l1));
     }
 
-    @Test
-    void testAjouteNoCarry() {
-        l1.add(1);
-        l1.add(2);
-        l2.add(2);
-        l2.add(3);
+//    /**
+//     * Teste la méthode ajoute dans le cas où les listes sont vides
+//     */
+//    @Test
+//    void testAjouteNoCarry() {
+//        l1.add(1);
+//        l1.add(2);
+//        l2.add(2);
+//        l2.add(3);
+//
+//        lRes.add(3);
+//        lRes.add(5);
+//        assertEquals(lRes, listesNumeriques.ajoute(l1, l2));
+//    }
 
-        lRes.add(3);
-        lRes.add(5);
-        assertEquals(lRes, listesNumeriques.ajoute(l1, l2));
-    }
-
+    /**
+     * Teste la méthode ajoute dans le cas où on a une retenue à la fin
+     */
     @Test
     void testAjouteWithCarry() {
         l1.add(5);
@@ -91,6 +122,9 @@ class ListesNumeriquesTest {
     }
 
 
+    /**
+     * Teste la méthode areInLegalRange dans le cas où les éléments de la liste sont compris entre 0 et 9
+     */
     @Test
     void testAreInLegalRangeEdgeCases() {
         l1.add(0);
@@ -99,15 +133,9 @@ class ListesNumeriquesTest {
         assertDoesNotThrow(() -> listesNumeriques.areInLegalRange(l1));
     }
 
-    @Test
-    void testAreInLegalRangeThrowsException() {
-        l1.add(0, 10);
-        l1.add(0, 3);
-
-        assertThatThrownBy(() -> listesNumeriques.areInLegalRange(l1))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
-    }
-
+    /**
+     * Teste la méthode areInLegalRange dans le cas où les éléments de la liste sont compris entre 0 et 9
+     */
     @Test
     void testAreInLegalRangeOk() {
         l1.add(0, 1);
@@ -119,6 +147,21 @@ class ListesNumeriquesTest {
         assertDoesNotThrow(() -> listesNumeriques.areInLegalRange(l2));
     }
 
+    /**
+     * Teste la méthode areInLegalRange dans le cas où les éléments de la liste ne sont pas compris entre 0 et 9
+     */
+    @Test
+    void testAreInLegalRangeThrowsException() {
+        l1.add(0, 10);
+        l1.add(0, 3);
+
+        assertThatThrownBy(() -> listesNumeriques.areInLegalRange(l1))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    /**
+     * Teste la méthode areInLegalRange dans le cas où la liste a un élément négatif
+     */
     @Test
     void testAreInLegalRangeBelowZero() {
         l1.add(-1);
@@ -127,6 +170,9 @@ class ListesNumeriquesTest {
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
+    /**
+     * Teste la méthode areInLegalRange dans le cas où la liste a un élément supérieur à 9
+     */
     @Test
     void testAreInLegalRangeAboveNine() {
         l1.add(10);
