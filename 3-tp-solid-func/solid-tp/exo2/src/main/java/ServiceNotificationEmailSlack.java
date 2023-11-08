@@ -1,8 +1,6 @@
 // Interface service notification
-public interface ServiceNotification {
-    void sendSMS(String noTelephone, String texte);
+public interface ServiceNotificationEmailSlack {
     void sendEmail(String to, String texte);
-    void sendApplicationInterne(String texte);
     void sendMessageSlack(String slackUserID, String texte);
 }
 

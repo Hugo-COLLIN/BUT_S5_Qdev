@@ -1,19 +1,7 @@
-public class ServiceNotificationEntreprise implements ServiceNotification {
-    @Override
-    public void sendSMS(String noTelephone, String texte) {
-        // Pas d'implantation
-        return;
-    }
-
+public class ServiceNotificationEntreprise implements ServiceNotificationEmailSlack {
     @Override
     public void sendEmail(String to, String texte) {
         System.out.println("Envoi à " + to + " du message " + texte);
-    }
-
-    @Override
-    public void sendApplicationInterne(String texte) {
-        // Pas d'implantation
-        return;
     }
 
     @Override

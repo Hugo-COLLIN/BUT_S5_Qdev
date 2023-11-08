@@ -1,4 +1,4 @@
-public class ServiceNotificationCreche implements ServiceNotification {
+public class ServiceNotificationCreche implements ServiceNotificationSmsInterne {
     private String apiURL = "https://creche.fr/api/diffusion";
 
     @Override
@@ -7,19 +7,7 @@ public class ServiceNotificationCreche implements ServiceNotification {
     }
 
     @Override
-    public void sendEmail(String to, String texte) {
-        // Pas d'implantation
-        return;
-    }
-
-    @Override
     public void sendApplicationInterne(String texte) {
         System.out.println("Envoi à " + apiURL + " du message " + texte);
-    }
-
-    @Override
-    public void sendMessageSlack(String slackUserID, String texte) {
-        // Pas d'implantation
-        return;
     }
 }
