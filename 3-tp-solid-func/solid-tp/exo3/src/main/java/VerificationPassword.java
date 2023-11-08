@@ -1,6 +1,6 @@
 public class VerificationPassword {
     public boolean isPasswordValide(String password) {
-        if (password.length() < Constantes.MIN_PASSWORD_LONG) {
+        if (password.length() < ConstantesPassword.MIN_PASSWORD_LONG) {
             return false;
         }
         var nbSpecialChars = 0;
@@ -10,7 +10,7 @@ public class VerificationPassword {
                 nbSpecialChars++;
             }
         }
-        if(nbSpecialChars < Constantes.NB_SPECIAL_CARS_PASSWORD){
+        if(nbSpecialChars < ConstantesPassword.NB_SPECIAL_CARS_PASSWORD){
             return false;
         }
         return true;
