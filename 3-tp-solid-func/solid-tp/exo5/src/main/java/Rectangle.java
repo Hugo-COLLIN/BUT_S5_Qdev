@@ -22,4 +22,12 @@ public class Rectangle extends FormeGeometrique {
     public int getMaxY() {
         return maxY;
     }
+
+    @Override
+    boolean isPointDansForme(int x, int y) {
+        return x <= this.getMaxX() &&
+                x >= this.getMinX() &&
+                y >= this.getMinY() &&
+                y <= this.getMaxY();
+    }
 }

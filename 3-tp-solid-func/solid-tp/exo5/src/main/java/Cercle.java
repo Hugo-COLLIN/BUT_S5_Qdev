@@ -17,4 +17,13 @@ public class Cercle extends FormeGeometrique {
     public int getRayon() {
         return rayon;
     }
+
+    @Override
+    boolean isPointDansForme(int x, int y) {
+        var distanceOrigine = Math.sqrt(
+                (this.getyOrigine() - y) * (this.getyOrigine() - y) +
+                (this.getxOrigine() - x) * (this.getxOrigine() - x)
+        );
+        return distanceOrigine <= this.getRayon();
+    }
 }
