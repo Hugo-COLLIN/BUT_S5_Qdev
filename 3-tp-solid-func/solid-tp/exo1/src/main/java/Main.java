@@ -9,10 +9,10 @@ public class Main {
         var bob = new EmployeTempsPlein("Bob", 41);
         bob.setNbJoursCongesPris(2);
         var contractuel = new EmployeContractuel("Charly", 30, LocalDate.now().plusYears(1));
-        List<Employe> employes = List.of(alice, bob, contractuel);
+        List<Personnel> personnel = List.of(alice, bob, contractuel);
 
         var calcul = new CalculMoyenneConges();
-        var resultat = calcul.moyenneJoursCongesRestantsParEmploye(employes);
+        var resultat = calcul.moyenneJoursCongesRestantsParEmploye(personnel);
 
         // Les contractuels externes posent un problème dans le calcul de la moyenne
         // Ils n'ont pas de jours de congé, et ils ne devraient pas être pris en compte. 
