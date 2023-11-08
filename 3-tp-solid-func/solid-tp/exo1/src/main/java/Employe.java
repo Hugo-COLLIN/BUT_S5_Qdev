@@ -1,19 +1,8 @@
-public abstract class Employe {
-    private String nom;
-    private int age;
+public abstract class Employe extends Personnel{
     private int nbJoursCongesPris;
 
     public Employe(String name, int age) {
-        this.nom = name;
-        this.age = age;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public int getAge() {
-        return age;
+        super(name, age);
     }
 
     public int getNbJoursCongesPris() {
