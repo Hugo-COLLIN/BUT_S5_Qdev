@@ -4,3 +4,6 @@
 *.class
 
 *.zip
+
+out
+target
