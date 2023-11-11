@@ -1,26 +1,14 @@
 package org.iut.func;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class WordCount {
   public long countInFile(String wordToFind, String filePath) throws IOException {
-
-    long count = 0;
-    var bufferedReader = new BufferedReader(new FileReader(filePath));
-    String line = null;
-
-    while ((line = bufferedReader.readLine()) != null) {
-      String[] words = line.split(" ");
-      for (String word : words) {
-//          System.out.println(word);
-        if (word.equals(wordToFind)) {
-          count++;
-//            System.out.println(count + " : " + word);
-//            System.out.println(Arrays.toString(words));
-        }
-      }
-    }
-    return count;
+    return new BufferedReader(new FileReader(filePath))
+          .lines()
+          .flatMap(line -> Stream.of(line.split(" ")))
+          .filter(word -> word.equals(wordToFind))
+          .count();
   }
 }

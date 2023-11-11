@@ -2,20 +2,10 @@ package org.iut.func;
 
 public class PremiereLettreDouble {
   public char findIn(String mot) {
-    char[] lettres = mot.toCharArray();
-
-    for (char lettreCandidate : lettres) {
-      int count = 0;
-
-      for (char lettre : lettres) {
-        if (lettreCandidate == lettre) {
-          count++;
-        }
-      }
-      if (count > 1) {
-        return lettreCandidate;
-      }
-    }
-    return '\0';
+      return mot.chars()
+              .mapToObj(c -> (char) c)
+              .filter(c -> mot.indexOf(c) != mot.lastIndexOf(c)) // indexOf: 1ere occurence, lastIndexOf: dernière occurence
+              .findFirst()
+              .orElse('\0');
   }
 }

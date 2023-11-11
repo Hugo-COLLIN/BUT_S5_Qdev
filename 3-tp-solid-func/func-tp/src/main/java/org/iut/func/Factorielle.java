@@ -1,14 +1,13 @@
 package org.iut.func;
 
 import java.math.BigInteger;
+import java.util.stream.LongStream;
 
 public class Factorielle {
   public BigInteger compute(long borneSup) {
-    BigInteger resultat = BigInteger.ONE;
-
-    for (int i = 1; i <= borneSup; i++) {
-      resultat = resultat.multiply(BigInteger.valueOf(i));
-    }
-    return resultat;
+      return LongStream
+              .rangeClosed(1, borneSup)
+              .mapToObj(BigInteger::valueOf)
+              .reduce(BigInteger.ONE, BigInteger::multiply);
   }
 }
