@@ -1,7 +1,6 @@
 package org.iut.func;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import static org.iut.func.Triplet.triplet;
