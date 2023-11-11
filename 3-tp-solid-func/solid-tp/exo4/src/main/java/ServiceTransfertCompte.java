@@ -7,7 +7,7 @@ public class ServiceTransfertCompte {
             throw new IllegalArgumentException("Le montant doit être positif");
         }
 
-        ServiceMonitoringAudit sma = new ServiceMonitoringAudit();
+        ServiceAudit sma = new ServiceMonitoringAudit();
 		
         if (source.getSolde() < montant) {
             sma.logSoldeInsuffisant(source);
