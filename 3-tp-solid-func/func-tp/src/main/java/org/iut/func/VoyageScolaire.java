@@ -6,7 +6,7 @@ public class VoyageScolaire {
   public boolean isMajeurObligatoire(Set<Personne> participants) {
     boolean obligatoire = true;
 
-    if (participants.size() == 0) {
+    if (participants.isEmpty()) {
       obligatoire = false;
     } else {
       for (var participant : participants) {
