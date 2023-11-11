@@ -1,3 +1,4 @@
+# Exercice 1
 Dans le code initial, le principe LSP n'est pas respecté : un contractuel n'est pas un employé, donc `EmployeContractuel`
 héritant de `Employe` est une mauvaise implémentation.
 

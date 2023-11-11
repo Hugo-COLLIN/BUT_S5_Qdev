@@ -1,3 +1,4 @@
+# Exercice 5
 Dans le code initial, le principe OCP n'est pas respecté : chaque fois qu'on ajoute une nouvelle forme génométrique,
 il est nécessaire de modifier la méthode `isPointDansFormes` de `CalculPointDansFormes`.
 

@@ -1,3 +1,4 @@
+# Exercice 2
 Dans le code initial, le principe ISP n'est pas respecté : on a une seule interface ``ServiceNotification`` et les classes 
 qui implémentent cette interface n'utilisent pas toutes les méthodes de cette interface.
 
