@@ -1,1 +1,3 @@
-public interface Shape  {}
+public sealed interface Shape permits Circle, Square {
+
+}
