@@ -1,0 +1,59 @@
+import java.util.concurrent.Executors;
+
+public class DemoThread {
+    //public static void platformThread() {
+	public static void main(String[] args) {
+	
+        Thread.ofPlatform().start(() -> System.out.println(Thread.currentThread()));
+    }
+
+//    public static void virtualThread() {
+//        Thread.startVirtualThread(() -> System.out.println(Thread.currentThread()));
+//
+//        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+//            executor.submit(() -> System.out.println(Thread.currentThread()));
+//            executor.submit(() -> System.out.println(Thread.currentThread()));
+//            executor.submit(() -> System.out.println(Thread.currentThread()));
+//        }
+//    }
+}
+
+-----------------------------------------------------------------------------------------------
+Platform threads: pb mémoire au bout d'un certain nombre de threads
+-----------------------------------------------------------------------------------------------
+
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.LockSupport;
+
+public class PlatformThread {
+	public static void main(String[] args) {
+		var counter = new AtomicInteger();
+		while (true) {
+			new Thread(() -> {
+				int count = counter.incrementAndGet();
+				System.out.println("Thread count = " + count);
+				LockSupport.park();
+			}).start();
+		}
+	}
+}
+
+-----------------------------------------------------------------------------------------------
+Virtual threads: plus d'un million de threads sans broncher
+-----------------------------------------------------------------------------------------------
+
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.LockSupport;
+
+public class VirtualThread {
+	public static void main(String[] args) {
+		var counter = new AtomicInteger();
+		while (true) {
+			Thread.startVirtualThread(() -> {
+				int count = counter.incrementAndGet();
+				System.out.println("Thread count = " + count);
+				LockSupport.park();
+			});
+		}
+	}
+}
