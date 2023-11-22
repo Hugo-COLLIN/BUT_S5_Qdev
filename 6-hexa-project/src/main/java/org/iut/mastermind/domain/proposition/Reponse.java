@@ -15,19 +15,30 @@ public class Reponse {
 
     // on récupère la lettre à la position dans le résultat
     public Lettre lettre(int position) {
-        return null;
+        return resultat.get(position);
     }
 
     // on construit le résultat en analysant chaque lettre
     // du mot proposé
     public void compare(String essai) {
-        // TBD
+//        position = 0;
+        essai.chars().forEach(c -> {
+            resultat.add(evaluationCaractere((char) c));
+            position++;
+        });
     }
 
     // si toutes les lettres sont placées
     public boolean lettresToutesPlacees() {
-        return false;
+        position = 0;
+        return motSecret.chars().allMatch(c -> {
+            boolean isPlaced = estPlace((char) c);
+            position++;
+            return isPlaced;
+        }) && resultat.stream().noneMatch(lettre -> lettre == Lettre.INCORRECTE);
     }
+
+
 
     public List<Lettre> lettres() {
         return unmodifiableList(resultat);
@@ -35,16 +46,18 @@ public class Reponse {
 
     // renvoie le statut du caractère
     private Lettre evaluationCaractere(char carCourant) {
-        return null;
+        return estPresent(carCourant) ?
+                estPlace(carCourant) ? Lettre.PLACEE : Lettre.NON_PLACEE :
+                Lettre.INCORRECTE;
     }
 
     // le caractère est présent dans le mot secret
     private boolean estPresent(char carCourant) {
-        return false;
+        return motSecret.chars().anyMatch(c -> c == carCourant);
     }
 
     // le caractère est placé dans le mot secret
     private boolean estPlace(char carCourant) {
-        return false;
+        return motSecret.charAt(position) == carCourant;
     }
 }
