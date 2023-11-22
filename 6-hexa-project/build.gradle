@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'org.iut.mastermind'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation 'org.mockito:mockito-core:5.1.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.1.1'
+
+    implementation 'org.postgresql:postgresql:42.6.0'
+    implementation 'com.vtence.molecule:molecule:0.15.0'
+    implementation 'io.thorntail:undertow:2.7.0.Final'
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+test {
+    useJUnitPlatform()
+}
