@@ -43,7 +43,6 @@ public class Mastermind {
             return ResultatPartie.ERROR;
         }
         Partie partie = partieEnCours.get();
-        assert calculeResultat(partie, motPropose) != null;
         Reponse reponse = calculeResultat(partie, motPropose).resultat();
         return ResultatPartie.create(reponse, partie.isTerminee());
     }
@@ -59,10 +58,6 @@ public class Mastermind {
         partieRepository.update(partie);
         return ResultatPartie.create(reponse, partie.isTerminee());
     }
-
-
-
-
 
 
     // si la partie en cours est vide, on renvoie false
