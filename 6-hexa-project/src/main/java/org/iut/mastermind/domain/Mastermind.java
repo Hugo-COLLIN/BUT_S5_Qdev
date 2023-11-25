@@ -24,26 +24,50 @@ public class Mastermind {
     // sinon on utilise le service de tirage aléatoire pour obtenir un mot
     // et on initialise une nouvelle partie et on la stocke
     public boolean nouvellePartie(Joueur joueur) {
-        return false;
+        Optional<Partie> partieEnCours = partieRepository.getPartieEnregistree(joueur);
+        if (isJeuEnCours(partieEnCours)) {
+            return false;
+        }
+        String mot = serviceTirageMot.tirageMotAleatoire();
+        Partie partie = Partie.create(joueur, mot);
+        partieRepository.create(partie);
+        return true;
     }
 
     // on récupère éventuellement la partie enregistrée pour le joueur
     // si la partie n'est pas une partie en cours, on renvoie une erreur
     // sinon on retourne le resultat du mot proposé
     public ResultatPartie evaluation(Joueur joueur, String motPropose) {
-        return null;
+        Optional<Partie> partieEnCours = partieRepository.getPartieEnregistree(joueur);
+        if (!isJeuEnCours(partieEnCours)) {
+            return ResultatPartie.ERROR;
+        }
+        Partie partie = partieEnCours.get();
+        assert calculeResultat(partie, motPropose) != null;
+        Reponse reponse = calculeResultat(partie, motPropose).resultat();
+        return ResultatPartie.create(reponse, partie.isTerminee());
     }
 
     // on évalue le résultat du mot proposé pour le tour de jeu
     // on met à jour la bd pour la partie
     // on retourne le résulat de la partie
     private ResultatPartie calculeResultat(Partie partie, String motPropose) {
-        return null;
+        if (partie.isTerminee()) {
+            return ResultatPartie.create(new Reponse(partie.getMot()), true);
+        }
+        Reponse reponse = partie.tourDeJeu(motPropose);
+        partieRepository.update(partie);
+        return ResultatPartie.create(reponse, partie.isTerminee());
     }
+
+
+
+
+
 
     // si la partie en cours est vide, on renvoie false
     // sinon, on évalue si la partie est terminée
     private boolean isJeuEnCours(Optional<Partie> partieEnCours) {
-        return false;
+        return partieEnCours.isPresent() && !partieEnCours.get().isTerminee();
     }
 }

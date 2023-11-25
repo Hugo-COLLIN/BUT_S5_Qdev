@@ -27,17 +27,17 @@ public class Partie {
 
     // getter joueur
     public Joueur getJoueur() {
-        return null;
+        return joueur;
     }
 
     // getter nombre d'essais
     public int getNbEssais() {
-        return -1;
+        return nbEssais;
     }
 
     // getter mot à deviner
     public String getMot() {
-        return "";
+        return motADeviner;
     }
 
     // si le nombre max d'essais n'est pas atteint
@@ -46,21 +46,37 @@ public class Partie {
     // si toutes les lettres sont correctement placées,
     // on a terminé la partie
     public Reponse tourDeJeu(String motPropose) {
-        return null;
+        if (partieTerminee) {
+            throw new IllegalStateException("La partie est déjà terminée");
+        }
+        nbEssais++;
+        MotSecret motSecret = new MotSecret(motADeviner);
+        Reponse reponse = motSecret.compareProposition(motPropose);
+        if (reponse.lettresToutesPlacees()) {
+            partieTerminee = true;
+        }
+        verifieNbEssais();
+        return reponse;
     }
+
+
 
     // vérifie que le nombre d'essais max n'est pas atteint
     private void verifieNbEssais() {
-        //TBD
+        if (nbEssais >= NB_ESSAIS_MAX) {
+            partieTerminee = true;
+        }
     }
 
     // la partie est-elle terminée
     public boolean isTerminee() {
-        return false;
+        return partieTerminee;
     }
 
     // la partie est terminée
     void done() {
-        //TBD
+        partieTerminee = true;
+//        partieRepository.update(this);
     }
+
 }
