@@ -6,18 +6,24 @@ public class Joueur {
 
     // constructeur
     public Joueur(String nom) {
-        this.nom = "";
+        this.nom = nom;
     }
 
     // getter nom joueur
     public String getNom() {
-        return "";
+        return this.nom;
     }
 
     // equals
     @Override
     public boolean equals(Object o) {
-       return false;
+        return (this == o) || ((o instanceof Joueur joueur) && nom.equals(joueur.nom));
+    }
+
+    // hashcode
+    @Override
+    public int hashCode() {
+        return nom.hashCode();
     }
 
 }
