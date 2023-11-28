@@ -8,4 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BookDAOTest {
 
+    @Test
+    public void exception_qd_return_books_from_users() {
+        assertThrows(ClassCallException.class, () -> {
+            new BookDAO().booksBy(new User());
+        });
+    }
 }

@@ -11,4 +11,8 @@ public class BookDAO {
 		throw new ClassCallException(
 				"BookDAO should not be invoked on an unit test.");
 	}
+
+    public List<Book> booksBy(User user) {
+        return BookDAO.findBooksByUser(user);
+    }
 }

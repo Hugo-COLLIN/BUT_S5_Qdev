@@ -9,6 +9,12 @@ import org.iut.bookservice.user.UserSession;
 
 public abstract class BookService {
 
+    private BookDAO bookDAO;
+
+    public BookService(BookDAO bookDAO) {
+        this.bookDAO = bookDAO;
+    }
+
 	public List<Book> getBooksByUser(User user, User loggedInUser) throws UserNotLoggedInException {
         // validation user
         if(loggedInUser == null) {
@@ -22,7 +28,7 @@ public abstract class BookService {
     }
 
     protected List<Book> booksByUsers(User user) {
-        return BookDAO.findBooksByUser(user);
+        return bookDAO.booksBy(user);
     }
 
 }
